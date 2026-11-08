@@ -1,8 +1,10 @@
-![Intro scenery: a half built advent calendar on the workshop bench, candles lit, snow at the window](intro-banner.png)
+![Intro scenery: two hands lifting a newly framed landscape print into the one empty space on a gallery wall covered with walnut framed landscape prints, a stack of further framed prints waiting on the side table and one frame edged in vermilion among the brown](intro-banner.png)
 
 # Wallhaven-MacOS-Wallpaper
 
-![Wordmark banner: the workshop bench and the completed calendar whose largest open doorway carries the name](banner.png)
+![Wordmark banner: a bright gallery wall covered with walnut framed landscape prints in a neat grid, one space in the middle standing empty and one frame edged in vermilion among the brown](banner.png)
+
+<p align="center"><img src="logo.png" alt="Wallhaven-MacOS-Wallpaper logo: a flat illustration of a gallery wall of framed landscape prints on a cream ground, one large walnut frame at the centre holding a mountain lake scene and smaller frames ranked evenly around it" width="200"></p>
 
 ![Animated scene: snow at the window, advent doors opening one at a time, candle flames leaning](scene.svg)
 
