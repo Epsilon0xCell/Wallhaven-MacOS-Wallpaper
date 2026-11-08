@@ -3,54 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wallhaven-MacOS-Wallpaper: The Advent Calendar Workshop</title>
-<meta name="description" content="A personal method note for getting Wallhaven wallpapers onto macOS: bulk download on a Windows virtual machine, then set the shared download folder itself as the rotating wallpaper source.">
+<title>Wallhaven-MacOS-Wallpaper: The Picture Wall</title>
+<meta name="description" content="The method I use to get Wallhaven wallpapers onto macOS: bulk download in a Windows virtual machine, then point macOS at the folder so the desktop rotates through the whole haul.">
 <style>
-@font-face{font-family:'Arimo';src:url('fonts/Arimo.ttf') format('truetype');}
-@font-face{font-family:'Barlow';src:url('fonts/Barlow.ttf') format('truetype');}
-:root{--red:#a5232c;--pine:#234d33;--gold:#d9a441;--snow:#f7f5ee;--dark:#16281d}
-*{box-sizing:border-box} body{margin:0;background:var(--dark);color:var(--snow);font-family:'Barlow',sans-serif;line-height:1.6}
-h1,h2{font-family:'Arimo',sans-serif;letter-spacing:.04em}
-.hero{padding:2rem 6vw 1rem;max-width:1150px;margin:0 auto}.hero img.banner{width:100%;height:auto}
-.logo{width:96px;height:96px}
-main{padding:0 6vw 3rem;max-width:1150px;margin:0 auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}
-.cell{background:var(--snow);color:var(--dark);border:4px solid var(--red);padding:1.2rem 1.4rem;position:relative;background-image:radial-gradient(circle at 8px 8px, rgba(165,35,44,.25) 1.5px, transparent 1.6px);background-size:26px 26px;background-position:0 0}
-.cell article{background:var(--snow);padding:.2rem .4rem}
-.cell h2{color:var(--pine);border-bottom:3px solid var(--red);padding-bottom:.3rem}
-.step{position:absolute;top:-14px;left:12px;background:var(--gold);color:var(--dark);font-family:'Arimo',sans-serif;padding:.05rem .6rem;border:2px solid var(--red)}
-.btn{display:inline-block;background:var(--red);color:var(--snow);font-family:'Arimo',sans-serif;text-decoration:none;padding:.6rem 1rem;border:3px solid var(--pine);position:relative;margin:.3rem .3rem .3rem 0}
-.btn:hover{transform:translateX(3px);box-shadow:inset 6px 0 0 var(--gold)}
-.btn:active{transform:none;background:var(--pine);color:var(--gold)}
-.btn:focus-visible{outline:3px solid var(--snow);outline-offset:3px}
-a{color:var(--pine)} a::before{content:'';display:inline-block;width:.45em;height:1em;background:var(--pine);margin-right:.4em;clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%)}
-a:hover::before{transform:rotate(4deg)} .btn::before{content:none}
-.perf{border-top:4px dotted var(--red);margin:2.2rem auto;position:relative;width:100%}
-.perf::after{content:'';position:absolute;left:50%;top:-13px;width:26px;height:26px;background:var(--red);border:2px solid var(--pine);transform:translateX(-50%)}
-.note{background:#fdf6dd;border:2px solid var(--gold);padding:.7rem 1rem;position:relative}
-.note::after{content:'';position:absolute;top:6px;right:6px;width:12px;height:10px;background:var(--gold);border-radius:0 0 12px 12px}
-footer{padding:2rem 6vw}
+@font-face{font-family:'Young Serif';src:url('fonts/YoungSerif-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Figtree';src:url('fonts/Figtree-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Figtree';src:url('fonts/Figtree-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Figtree';src:url('fonts/Figtree-600.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Figtree';src:url('fonts/Figtree-700.woff2') format('woff2');font-weight:700}
+:root{--plaster:#f6f2e9;--walnut:#5d4230;--walnutdk:#42301f;--mat:#fdfaf1;--verm:#c93a22;--line:#ddd2ba;--ink:#3a3128}
+*{box-sizing:border-box} body{margin:0;background:var(--plaster);color:var(--ink);font-family:'Figtree',sans-serif;line-height:1.65}
+h1,h2{font-family:'Young Serif',serif;color:var(--walnutdk);font-weight:400}
+.hero{background:linear-gradient(170deg,#efe7d3 0%,var(--plaster) 70%);padding:2.2rem 6vw 1.6rem;border-bottom:10px solid var(--walnut)}
+.hero .inner{max-width:1020px;margin:0 auto}
+.hero img.wide{width:100%;height:auto;display:block;border:10px solid var(--walnut);outline:2px solid var(--walnutdk);box-shadow:0 6px 22px rgba(66,48,31,.28);background:var(--mat)}
+.hero .row{display:flex;gap:1.1rem;align-items:flex-start;margin-top:1.3rem}
+.hero .row img{width:92px;height:92px;object-fit:cover;border:5px solid var(--walnut);outline:1px solid var(--walnutdk);background:var(--mat)}
+.hero h1{margin:.1rem 0 .3rem;font-size:2.6rem}
+.hero p{max-width:44rem}
+main{padding:0 6vw 3rem;max-width:1020px;margin:0 auto}
+.card{background:var(--mat);border:1px solid var(--line);border-top:6px solid var(--walnut);padding:1.2rem 1.5rem;margin:1.6rem 0;box-shadow:0 2px 8px rgba(90,70,40,.12)}
+.card.accent{border-top-color:var(--verm)}
+.card h2{margin:.1rem 0 .5rem;font-size:1.75rem}
+.card p{margin:.4rem 0}
+.strip{background:var(--walnutdk);color:#f6efdd;padding:1rem 1.2rem;overflow-x:auto;font-family:ui-monospace,Menlo,monospace;border-radius:3px;border-left:6px solid var(--verm)}
+.btn{display:inline-block;background:var(--walnut);color:#fdf6e3;font-family:'Figtree',sans-serif;font-weight:700;text-decoration:none;padding:.55rem 1.1rem;border-radius:3px;margin:.3rem .4rem .3rem 0}
+.btn:hover{background:var(--verm);color:#fff}.btn:active{transform:translateY(2px)}
+.btn:focus-visible{outline:2px dashed var(--verm);outline-offset:3px}
+a{color:var(--verm);font-weight:700}
+ol.steps{margin:.4rem 0;padding-left:1.4rem}ol.steps li{margin:.45rem 0}
+table{border-collapse:collapse}td{padding:.2rem .9rem .2rem 0;vertical-align:top}
+td:first-child{font-weight:700;color:var(--walnutdk);white-space:nowrap}
+.small{font-size:.92rem}
+footer{padding:0 6vw 2.5rem;max-width:1020px;margin:0 auto;color:#8a7a5c}
 </style>
 </head>
 <body>
 <header class="hero">
-<img class="logo" src="assets/logo.png" alt="Closed advent calendar door with a cottage in a gold oval">
-<img class="banner" src="assets/banner.png" alt="Advent calendar workshop with a completed calendar on the wall">
-<h1>Wallhaven-MacOS-Wallpaper</h1>
-<p>A workshop bench divided into calendar cells. Each cell holds one part of the method, and nothing here adds a new step.</p>
-<p><a class="btn" href="https://github.com/Epsilon0xCell/Wallhaven-MacOS-Wallpaper">Open the repo</a> <a class="btn" href="#condition">The Windows condition</a></p>
+<div class="inner">
+<img class="wide" src="assets/intro-banner.png" alt="Two hands lifting a newly framed landscape print into the one empty space on a gallery wall of walnut framed prints, a stack of further framed prints waiting on the side table, and one frame edged in vermilion among the brown">
+<div class="row"><img src="assets/logo.png" alt="Wallhaven-MacOS-Wallpaper logo: a flat illustration of a gallery wall of framed landscape prints on a cream ground, one large walnut frame at the centre holding a mountain lake scene and smaller frames ranked evenly around it"><div><h1>Wallhaven-MacOS-Wallpaper</h1><p>This is the method I use to get Wallhaven wallpapers onto macOS. The repo ships no code and downloads nothing itself: it is a short method note. Bulk download the wallpapers, then set the wallpaper source as the folder you downloaded to, and the desktop rotates through the whole haul, one frame after another, all year.</p><p><a class="btn" href="https://github.com/Epsilon0xCell/Wallhaven-MacOS-Wallpaper">Open the repo</a> <a class="btn" href="#method">The method</a></p></div></div>
+</div>
 </header>
 <main>
-<div class="perf"></div>
-<div class="grid">
-<section class="cell"><span class="step">Cell 1</span><article><h2>What this repository is</h2><p>It contains no program, no script, and no downloader. It is a personal method note, written in the first person, for getting Wallhaven wallpapers onto macOS, plus hand drawn sheets and a static page that present the same method and add no new steps. Anyone expecting the repo itself to fetch or set an image will not find that here.</p></article></section>
-<section class="cell"><span class="step">Cell 2</span><article><h2>The recommended method</h2><p>Search Wallhaven and choose images. Download them in bulk with <a href="https://bulkimagedownloader.com">Bulk Image Downloader</a> into one folder. Then point macOS at that folder itself as the wallpaper source, so the desktop rotates through the downloaded set. The author calls this folder approach far better than most tools, and that is reported here as his judgement, not as a measured comparison.</p></article></section>
-<section class="cell" id="condition"><span class="step">Cell 3</span><article><h2>The condition</h2><p>Bulk Image Downloader is Windows only. The note therefore requires a Windows virtual machine on the Mac, with a shared folder reaching macOS, so the images land in a folder the Mac can use as its wallpaper source. There is no Mac native step for the download itself in this method, and no part of the repository automates the virtual machine, the download, or the macOS setting.</p>
-<div class="note"><p>Picture square: Windows only. The download step runs in a virtual machine, not on macOS itself.</p></div></article></section>
-<section class="cell"><span class="step">Cell 4</span><article><h2>Scope</h2><p>Wallhaven itself supplies the images and its own terms govern their use. The third party downloader is an external product the repo does not ship or support. The method stands or falls on keeping the shared folder in place once it has been chosen as the source.</p>
-<div class="note"><p>Picture square: the hand drawn sheets and this page add no new steps. Both present the same method.</p></div></article></section>
-</div>
+<section class="card" id="method"><h2>The method</h2><ol class="steps">
+<li>Bulk download from Wallhaven with Bulk Image Downloader.</li>
+<li>Run it in a Windows virtual machine on the Mac: the tool is Windows only, so the virtual machine needs a shared folder reaching macOS.</li>
+<li>Point macOS at the downloaded folder as the wallpaper source, so the desktop cycles through the folder instead of sitting on one picture.</li>
+</ol><p>I personally recommend bulk downloading and then setting the wallpaper as the folder to which you bulk downloaded. It is a far superior approach to most tools: one folder, filled once, keeps the wall changing.</p><div class="strip">https://bulkimagedownloader.com</div></section>
+<section class="card accent"><h2>Why a folder, not a file</h2><p>A single wallpaper is one frame on the wall. A folder is the whole gallery: macOS takes its turn through every print in it, so the space that would stand empty is always about to be filled by the next one. The method is deliberately small: no code in this repo, no downloader of its own, just the route written down.</p></section>
+<section class="card"><h2>Diagrams and site</h2><table>
+<tr><td>Visuals</td><td>The hand drawn sheets for this method live in the <code>Wallhaven-MacOS-Wallpaper-Visuals</code> folder: architecture, data flow, flowchart, product map, schematic, and statistics, plus the combined PDF and the written VISUAL.md.</td></tr>
+<tr><td>Website</td><td>The static site page for this repo lives in the <code>Wallhaven-MacOS-Wallpaper-Website</code> folder. Neither the visuals nor the site adds new steps: both present the same method above.</td></tr>
+</table></section>
+<section class="card"><h2>The files</h2><p class="small"><code>README.md</code>, the method note itself. <code>LICENSE</code>, the MIT license. The artwork on this page is the repo's own header set: a picture wall of framed landscapes, hung in walnut on plaster.</p></section>
 </main>
-<footer><p>Licence for the repository: MIT. One completed calendar hung straight, its remaining doors still closed.</p></footer>
+<footer><p>One folder, filled once, and the wall never shows the same picture for long.</p></footer>
 </body>
 </html>
